@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <link rel="canonical" href="{{canonical_url}}">
+
+    <!-- RSS
+      <link rel="alternate" type="application/rss+xml" title="minima-reboot" href="/minima-reboot/feed.xml">
+    -->
+
+    <title>{{site_descr}}</title>
+
+    <meta name="generator" content="Franklin.jl" />
+
+    <meta property="og:title" content="{{site_title}}" />
+    <meta name="author" content="{{author}}" />
+    <meta property="og:locale" content="en_UK" />
+    <meta name="description" content="{{site_descr}}" />
+    <meta property="og:description" content="{{site_descr}}" />
+
+    <meta property="og:url" content="{{canonical_url}}" />
+    <meta property="og:site_name" content="{{site_title}}" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta property="twitter:title" content="{{site_title}}" />
+</head>
+
+<body>
+
+    {{insert header.html}}
+
+    <main aria-label="Content">
+      <div id="content-container" class="container">
+
+        {{ispage index.html}}  <!-- specific to the landing page -->
+          <header class="pt-3 mb-3">
+            <p> {{header}} <p>
+          </header>
+          <div id="content">
+        {{end}}
+
+        {{ispage about.html}} <!-- specific to the about page -->
+          <article>
+            <header class="pt-4 pb-3">
+                <h1>{{header}}</h1>
+            </header>
+            <div id="content">
+        {{end}}
+
+        {{ispage posts/*}}
+          {{ispage posts/index.html}} <!-- posts landing page -->
+          {{else}} <!-- specific posts -->
+            <article itemscope itemtype="http://schema.org/BlogPosting">
+              <header class="pt-4 pb-3">
+                <h1 itemprop="name headline">{{header}}</h1>
+                  <p class="text-secondary"> <time datetime="" itemprop="datePublished"> </time> </p>
+              </header>
+              <div class="text-justify" itemprop="articleBody" id="content">
+          {{end}}
+        {{end}}
